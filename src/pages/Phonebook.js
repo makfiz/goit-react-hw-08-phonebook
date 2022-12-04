@@ -4,19 +4,25 @@ import ContactForm from 'components/Forms/ContactForm/ContactForm'
 import Filter from 'components/Filter/Filter'
 import ContactList from "components/ContactList/ContactList";
 import { selectContacts } from "redux/contacts/selectors";
-import { selectIsLoggedIn } from "redux/auth/selectors";
-// import { addContact } from "redux/contactsSlice";
+import {
+    selectUser,
+    selectIsLoggedIn,
+    selectIsRefreshing,
+  } from 'redux/auth/selectors';
+
 
 import { fetchContacts, addContact } from "redux/contacts/operations";
 
 const Phonebook = () => {
     const dispatch = useDispatch();
     const contacts = useSelector(selectContacts)
-    const isLoggedIn = useSelector(selectIsLoggedIn)
+    const isLoggedIn = useSelector(selectIsLoggedIn);
+    
 
         useEffect(() => {
+            if(!isLoggedIn) return
             dispatch(fetchContacts());
-        }, [dispatch]);
+        }, [dispatch, isLoggedIn]);
 
     const onSubmitHandler = (data) => {
         
@@ -42,7 +48,7 @@ const Phonebook = () => {
             <>  
                 <h1 >Phonebook</h1>
                 <ContactForm submit={onSubmitHandler} />
-                {contacts.length > 0 && isLoggedIn && <div>
+                {contacts.length > 0 && <div>
                     <h2 >Contact</h2>
                     <Filter name={'filter'} />
                     <ContactList />

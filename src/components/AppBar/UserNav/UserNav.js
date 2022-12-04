@@ -6,7 +6,6 @@ import { logOut } from "redux/auth/operations";
 const UserNav = () => {
     const dispatch = useDispatch();
     const user = useSelector(selectUser)
-    console.log(user)
     return (
         <>
             <div>
