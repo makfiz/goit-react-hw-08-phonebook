@@ -5,11 +5,16 @@ import { useDispatch, useSelector  } from "react-redux";
 import Phonebook from 'pages/Phonebook'
 import LoginForm from 'pages/LoginForm'
 import RegisterForm from 'pages/RegisterForm'
-import  AppBar  from "components/AppBar/AppBar";
+import AppBar from "components/AppBar/AppBar";
+import NotFound from 'pages/NotFound'
 import { Box } from "components/utils/Box";
+import Loader from 'components/Loader/Loader'
+import { PrivateRoute } from "components/PrivateRoute";
+import { RestrictedRoute } from "components/RestrictedRoute";
 
 import { refresh } from "redux/auth/operations";
 import { selectIsRefreshing } from "redux/auth/selectors";
+
 export const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing)
   const dispatch = useDispatch();
@@ -21,7 +26,7 @@ export const App = () => {
 
 
   return (
-    !isRefreshing && <Box width="400px"
+    isRefreshing ? <Loader/> : <Box width="400px"
       ml="auto"
       mr="auto"
       mt="50px"
@@ -32,9 +37,10 @@ export const App = () => {
       as="div">
       <Routes>
         <Route path="/" element={<AppBar />}>
-          <Route path="/contacts" element={<Phonebook />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/contacts" element={<PrivateRoute component={Phonebook} redirectTo="/login"/>} />
+          <Route path="/login" element={<RestrictedRoute component={LoginForm} redirectTo="/contacts"/>} />
+          <Route path="/register" element={<RestrictedRoute component={RegisterForm} redirectTo="/contacts"/>} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </Box>
