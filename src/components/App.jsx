@@ -14,7 +14,7 @@ import { RestrictedRoute } from "components/RestrictedRoute";
 
 import { refresh } from "redux/auth/operations";
 import { selectIsRefreshing } from "redux/auth/selectors";
-
+import { Redirector } from "components/Redirector";
 export const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing)
   const dispatch = useDispatch();
@@ -26,23 +26,30 @@ export const App = () => {
 
 
   return (
-    isRefreshing ? <Loader/> : <Box width="400px"
+    <Box maxWidth="1200px"
       ml="auto"
       mr="auto"
-      mt="50px"
-      pb="20px"
-      bg="white"
-      borderRadius="normal"
-      boxShadow="shadow"
-      as="div">
-      <Routes>
-        <Route path="/" element={<AppBar />}>
-          <Route path="/contacts" element={<PrivateRoute component={Phonebook} redirectTo="/login"/>} />
-          <Route path="/login" element={<RestrictedRoute component={LoginForm} redirectTo="/contacts"/>} />
-          <Route path="/register" element={<RestrictedRoute component={RegisterForm} redirectTo="/contacts"/>} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+      mt="100px"
+      pl="40px"
+      pr="40px"
+    >
+      {isRefreshing ? <Loader/> : <Box 
+        pb="20px"
+        bg="white"
+        borderRadius="normal"
+        boxShadow="shadow"
+        as="div">
+        <Routes>
+          <Route path="/" element={<AppBar />}>
+            <Route index element={<Redirector ifAuthRedirectTo="/contacts" ifUnauthRedirectTo="/home"/>}/>
+            <Route path="home" element={<div>Home page</div>}/>
+            <Route path="contacts" element={<PrivateRoute component={Phonebook} redirectTo="/login"/>} />
+            <Route path="login" element={<RestrictedRoute component={LoginForm} redirectTo="/contacts"/>} />
+            <Route path="register" element={<RestrictedRoute component={RegisterForm} redirectTo="/contacts"/>} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        </Routes>
+      </Box>}
     </Box>
   );
 };

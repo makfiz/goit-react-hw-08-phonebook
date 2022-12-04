@@ -11,7 +11,7 @@ export const Header = styled.header`
   padding-top: 10px;
   padding-bottom: 10px;
   color: #fff;
-  box-shadow: ${p => p.theme.shadows.insideShadow}; 
+  border-bottom: 1px solid #ececec; 
 `
 export const StyledNavLink = styled(NavLink)`
     margin-right:15px;

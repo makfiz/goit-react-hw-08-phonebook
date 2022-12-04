@@ -1,21 +1,19 @@
 import { Box } from "components/utils/Box";
-import { useEffect } from "react";
+import { useEffect, useRef  } from "react";
 import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
     const navigate = useNavigate();
-
+    const timerIdRef = useRef(null)
     useEffect(() => {
-        const timeoutID = window.setTimeout(redirect, 6000)
+        timerIdRef.current = window.setTimeout(redirect, 6000)
 
         function redirect() {
             navigate("/", { replace: true });
         }
 
         return () => {
-            console.log(timeoutID)
-            window.clearTimeout(timeoutID)
-            console.log(timeoutID)
+            window.clearTimeout(timerIdRef.current)
         };
         
     },[navigate])

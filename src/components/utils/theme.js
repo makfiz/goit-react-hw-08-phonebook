@@ -12,7 +12,7 @@ export const theme = {
     white: '#ffffff',
     black: '#000000',
     grey: '#a1abb6',
-    navAccent: 'red',
+    navAccent: '#2196f3',
   },
   shadows: {
     shadow: '0px 0px 5px 0px rgba(0, 0, 0, 0.75)',

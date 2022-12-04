@@ -9,7 +9,7 @@ const UserNav = () => {
     return (
         <>
             <div>
-            <p>{user?.name}</p>
+            <p style={{color:"black"}}>{user?.name}</p>
             <button onClick={() => dispatch(logOut())}>Logout</button>
             </div>
         </>
