@@ -4,13 +4,12 @@ import {SpinerWraper} from 'components/Loader/Loader.styled'
 
 
 const Loader = () => {
-
     return (
         <SpinerWraper>
             <ColorRing
                 visible={true}
-                height="250"
-                width="250"
+                height="250px"
+                width="250px"
                 ariaLabel="blocks-loading"
                 wrapperStyle={{}}
                 wrapperClass="blocks-wrapper"

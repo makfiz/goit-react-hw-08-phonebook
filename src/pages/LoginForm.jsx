@@ -1,9 +1,11 @@
-import { useDispatch } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 import { logIn } from "redux/auth/operations";
+import { selectIsLoading } from "redux/auth/selectors";
 
+import { ColorRing } from 'react-loader-spinner'
 const LoginForm = () => {
     const dispatch = useDispatch();
+    const IsLoading = useSelector(selectIsLoading)
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -26,6 +28,15 @@ const LoginForm = () => {
                 <input name="password" type="password" placeholder="password"/>
             </label>
             <button type="submit">Sign in</button>
+            {IsLoading && <ColorRing
+                visible={true}
+                height="25px"
+                width="25px"
+                ariaLabel="blocks-loading"
+                wrapperStyle={{}}
+                wrapperClass="blocks-wrapper"
+                colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+            />}
        </form>
     )
 }

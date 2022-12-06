@@ -11,17 +11,7 @@ const authSlice = createSlice({
     name: "auth",
     initialState: authInitialState,
     extraReducers: builder => {
-        builder.addCase(register.fulfilled, (state, action) => {
-            state.token = action.payload.token
-            state.user = action.payload.user
-            state.isLoggedIn = true
-        })
-        .addCase(logIn.fulfilled, (state, action) => {
-            state.token = action.payload.token
-            state.user = action.payload.user
-            state.isLoggedIn = true
-        })
-        .addCase(logOut.fulfilled, (state) => {
+        builder.addCase(logOut.fulfilled, (state) => {
             state.token = null
             state.user = { name: null, email: null }
             state.isLoggedIn = false
@@ -30,8 +20,10 @@ const authSlice = createSlice({
             state.user = action.payload
             state.isLoggedIn = true
            
-        }).addCase(refresh.pending, (state) => {
-            state.isRefreshing = true
+        }).addCase(logIn.pending, (state) => {
+            state.isLoading = true
+        }).addCase(logIn.rejected, (state) => {
+            state.isLoading = false
         })
         .addMatcher(
             isAnyOf(refresh.fulfilled,
@@ -40,7 +32,18 @@ const authSlice = createSlice({
             state => {
                 state.isRefreshing = false
             }
-        )   
+        )
+        .addMatcher(
+            isAnyOf(register.fulfilled,
+                logIn.fulfilled,  
+            ),
+            (state, action) => {
+                state.token = action.payload.token
+                state.user = action.payload.user
+                state.isLoggedIn = true
+                state.isLoading = false
+            }
+        )      
         // .addMatcher(
         //     isAnyOf(
         //         ...extraActions.map(action => action.rejected)

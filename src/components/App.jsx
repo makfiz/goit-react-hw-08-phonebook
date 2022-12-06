@@ -1,4 +1,4 @@
-import { Routes, Route} from "react-router-dom";
+import { Routes, Route, Navigate} from "react-router-dom";
 import {useEffect } from "react";
 import { useDispatch, useSelector  } from "react-redux";
 
@@ -14,7 +14,8 @@ import { RestrictedRoute } from "components/RestrictedRoute";
 
 import { refresh } from "redux/auth/operations";
 import { selectIsRefreshing } from "redux/auth/selectors";
-import { Redirector } from "components/Redirector";
+import { width } from "styled-system";
+
 export const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing)
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export const App = () => {
       pl="40px"
       pr="40px"
     >
-      {isRefreshing ? <Loader/> : <Box 
+      {isRefreshing ? <Loader /> : <Box 
         pb="20px"
         bg="white"
         borderRadius="normal"
@@ -41,7 +42,7 @@ export const App = () => {
         as="div">
         <Routes>
           <Route path="/" element={<AppBar />}>
-            <Route index element={<Redirector ifAuthRedirectTo="/contacts" ifUnauthRedirectTo="/home"/>}/>
+            <Route index element={<Navigate to="/home"/>}/>
             <Route path="home" element={<div>Home page</div>}/>
             <Route path="contacts" element={<PrivateRoute component={Phonebook} redirectTo="/login"/>} />
             <Route path="login" element={<RestrictedRoute component={LoginForm} redirectTo="/contacts"/>} />

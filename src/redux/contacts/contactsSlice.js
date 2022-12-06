@@ -1,16 +1,24 @@
 import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 
-import { fetchContacts, addContact, deleteContact } from "redux/contacts/operations";
+import { fetchContacts, addContact, deleteContact, editContact } from "redux/contacts/operations";
 import { logOut } from "redux/auth/operations";
 import { contactsInitialState } from "redux/contacts/constants";
 
 
 
-const extraActions = [fetchContacts, addContact, deleteContact]
+const extraActions = [fetchContacts, addContact, deleteContact, editContact]
 
 const contactsSlice = createSlice({
     name: "contacts",
     initialState: contactsInitialState,
+    reducers: {
+        selectedContactReducer(state, action) {
+            state.selectedContact = action.payload
+        },
+        contactEditor(state, action) {
+            state.selectedContactIsEdited = action.payload
+        },
+      },
     extraReducers: builder => {
         builder.addCase(fetchContacts.fulfilled, (state, action) => {
             state.items = action.payload
@@ -21,6 +29,10 @@ const contactsSlice = createSlice({
         .addCase(deleteContact.fulfilled, (state, action) => {
             const index = state.items.findIndex(contact => contact.id === action.payload.id)
             state.items.splice(index, 1);
+        })
+        .addCase(editContact.fulfilled, (state, action) => {
+            const index = state.items.findIndex(contact => contact.id === action.payload.id)
+            state.items[index] = action.payload
         })
         .addCase(logOut.fulfilled, (state) => {
             state.items = []
@@ -55,6 +67,7 @@ const contactsSlice = createSlice({
         )
     }
 })
+export const { selectedContactReducer, contactEditor } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
 // ----------------------------------------------------------------------------------------------
 // const contactsSlice = createSlice({

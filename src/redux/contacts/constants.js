@@ -1,7 +1,9 @@
 export const contactsInitialState = {
     items: [],
     isLoading: false,
-    error: null
+    error: null,
+    selectedContact:null,
+    selectedContactIsEdited:false,
 }
 
 export const filterInitialState = {

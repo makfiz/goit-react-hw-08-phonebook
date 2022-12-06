@@ -7,11 +7,13 @@ margin-top:10px;
 padding-bottom:10px;
 `
 export const Item = styled.li`
+padding: 5px 10px;
 margin-left: 20px;
 margin-right: 20px;
 margin-bottom:10px;
 display: flex;
 justify-content: space-between;
+border-radius:10px;
 `
 export const Btn = styled.button`
     border:none;
@@ -25,6 +27,5 @@ export const Btn = styled.button`
 `
 export const ItemNav = styled.div`
 display:flex;
-flex-direction:column;
 justify-content: center;
 `
