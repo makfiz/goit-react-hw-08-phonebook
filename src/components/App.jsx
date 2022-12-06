@@ -14,7 +14,7 @@ import { RestrictedRoute } from "components/RestrictedRoute";
 
 import { refresh } from "redux/auth/operations";
 import { selectIsRefreshing } from "redux/auth/selectors";
-import { width } from "styled-system";
+
 
 export const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing)

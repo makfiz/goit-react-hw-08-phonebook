@@ -4,11 +4,7 @@ import ContactForm from 'components/Forms/ContactForm/ContactForm'
 import Filter from 'components/Filter/Filter'
 import ContactList from "components/ContactList/ContactList";
 import { selectContacts } from "redux/contacts/selectors";
-import {
-    selectUser,
-    selectIsLoggedIn,
-    selectIsRefreshing,
-  } from 'redux/auth/selectors';
+import {selectIsLoggedIn} from 'redux/auth/selectors';
 
 
 import { fetchContacts, addContact } from "redux/contacts/operations";
