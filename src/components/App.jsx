@@ -7,6 +7,7 @@ import LoginForm from 'pages/LoginForm'
 import RegisterForm from 'pages/RegisterForm'
 import AppBar from "components/AppBar/AppBar";
 import NotFound from 'pages/NotFound'
+import Home from 'pages/Home'
 import { Box } from "components/utils/Box";
 import Loader from 'components/Loader/Loader'
 import { PrivateRoute } from "components/PrivateRoute";
@@ -30,20 +31,17 @@ export const App = () => {
     <Box maxWidth="1200px"
       ml="auto"
       mr="auto"
-      mt="100px"
       pl="40px"
       pr="40px"
     >
       {isRefreshing ? <Loader /> : <Box 
         pb="20px"
-        bg="white"
         borderRadius="normal"
-        boxShadow="shadow"
         as="div">
         <Routes>
           <Route path="/" element={<AppBar />}>
             <Route index element={<Navigate to="/home"/>}/>
-            <Route path="home" element={<div>Home page</div>}/>
+            <Route path="home" element={<Home/>}/>
             <Route path="contacts" element={<PrivateRoute component={Phonebook} redirectTo="/login"/>} />
             <Route path="login" element={<RestrictedRoute component={LoginForm} redirectTo="/contacts"/>} />
             <Route path="register" element={<RestrictedRoute component={RegisterForm} redirectTo="/contacts"/>} />

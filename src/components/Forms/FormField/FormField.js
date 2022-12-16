@@ -11,6 +11,7 @@ const FormField = ({label, settings, onChange}) => {
                 title={settings.title}
                 required={settings.required}
                 onChange={onChange}
+                placeholder={`Enter contact ${settings.name}`}
             />
         </Lbl>
     )

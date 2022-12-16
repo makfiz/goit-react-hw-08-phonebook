@@ -11,7 +11,7 @@ export const Header = styled.header`
   padding-top: 10px;
   padding-bottom: 10px;
   color: #fff;
-  border-bottom: 1px solid #ececec; 
+  border-bottom: 2px solid #2196f3;; 
 `
 export const StyledNavLink = styled(NavLink)`
     margin-right:15px;

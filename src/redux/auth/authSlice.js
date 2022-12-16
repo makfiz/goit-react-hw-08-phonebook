@@ -24,6 +24,10 @@ const authSlice = createSlice({
             state.isLoading = true
         }).addCase(logIn.rejected, (state) => {
             state.isLoading = false
+        }).addCase(register.pending, (state) => {
+            state.isLoading = true
+        }).addCase(register.rejected, (state) => {
+            state.isLoading = false
         })
         .addMatcher(
             isAnyOf(refresh.fulfilled,

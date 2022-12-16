@@ -7,13 +7,13 @@ import { filterByValue } from "redux/contacts/filterSlice";
 const Filter = () => {
      const dispatch = useDispatch();
        return <FilterWraper>
-                <label htmlFor='filter'>Find contacts by name</label>
+                <label htmlFor='filter'>Filter contacts by name</label>
                     <input
                type="text"
                onChange={(e) => {dispatch(filterByValue(e.target.value))}}
                // value={filter}
                id='filter'
-               style={{maxWidth:'50%' }}
+               style={{width:'100%' , maxWidth:'400px', margin:'0px auto',  fontSize: '15px', padding: '10px' }}
                     />
             </FilterWraper>
 } 

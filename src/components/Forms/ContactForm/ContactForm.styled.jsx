@@ -13,6 +13,7 @@ export const Btn = styled.button`
     max-width: 100px;
     border:none;
     border-radius:10px;
+    padding:10px;
    &:hover{
     background-color:#2f2f37;
     color:white;

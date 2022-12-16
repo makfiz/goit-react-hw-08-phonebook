@@ -33,8 +33,8 @@ const ContactForm = ({ submit }) => {
         return (
             <>  
                 <Form onSubmit={(e) => handleSubmit(e)}>
-                    <FormField label={'Name:'} settings={inputSetings.name} onChange={(e) => onChangeHandler(e)} />
-                    <FormField label={'Tel:'} settings={inputSetings.number} onChange={(e) => onChangeHandler(e)}/>
+                    <FormField label={'Name'} settings={inputSetings.name} onChange={(e) => onChangeHandler(e)} />
+                    <FormField label={'Number'} settings={inputSetings.number} onChange={(e) => onChangeHandler(e)}/>
                     <Btn type='submit' >Add contact</Btn>
                 </Form>
             </>

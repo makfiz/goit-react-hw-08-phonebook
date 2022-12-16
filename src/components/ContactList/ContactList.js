@@ -51,7 +51,10 @@ const ContactList = () => {
 
    return ( 
             <List>
-                    <Item>Name/Number:</Item>
+                    <Item><div style={{display:'flex', justifyContent: 'space-between', width: '45%'}}  >
+                                <p>Name</p><p>Number</p>
+                          </div>
+                    </Item>
 
                 {contactsFilteredByName.map(contact => {
                return (
@@ -67,7 +70,7 @@ const ContactList = () => {
                         </form>
                         
                        
-                    </div> : <div style={{display:'flex'}}  >
+                    </div> : <div style={{display:'flex', justifyContent: 'space-between', width: '50%'}}  >
                         <p>{contact.name} </p><p>{contact.number }</p>
                        
                     </div>}

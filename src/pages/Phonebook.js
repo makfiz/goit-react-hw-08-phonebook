@@ -1,5 +1,7 @@
 import {useEffect } from "react";
 import {  useSelector, useDispatch  } from "react-redux";
+
+import { Box } from "components/utils/Box";
 import ContactForm from 'components/Forms/ContactForm/ContactForm'
 import Filter from 'components/Filter/Filter'
 import ContactList from "components/ContactList/ContactList";
@@ -41,7 +43,11 @@ const Phonebook = () => {
     }
 
         return (
-            <>  
+            <Box
+            textAlign="center"
+            alignItems="center"
+            
+        >  
                 <h1 >Phonebook</h1>
                 <ContactForm submit={onSubmitHandler} />
                 {contacts.length > 0 && <div>
@@ -50,7 +56,7 @@ const Phonebook = () => {
                     <ContactList />
                 </div>}
 
-            </>
+            </Box>
         )
     
 }

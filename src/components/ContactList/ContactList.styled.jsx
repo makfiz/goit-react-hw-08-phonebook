@@ -3,8 +3,10 @@ import styled from "styled-components";
 
 export const List = styled.ul`
 list-style: inside;
-margin-top:10px;
+margin:20px auto;
 padding-bottom:10px;
+border: 1px solid rgb(86 86 86/48%);
+max-width:750px;
 `
 export const Item = styled.li`
 padding: 5px 10px;
